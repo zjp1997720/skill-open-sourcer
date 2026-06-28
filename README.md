@@ -31,8 +31,8 @@ After installing, ask Codex to use `$skill-open-sourcer` with a local `SKILL.md`
 ## What It Does
 
 - Audits a local skill for obvious public-release blockers.
-- Packages the skill into the `skills/<skill-name>/` layout used by `npx skills`.
-- Generates human-facing release files such as README, Chinese README, LICENSE, and `skills.sh.json`.
+- Packages the skill into the layout expected by `npx skills`.
+- Generates human-facing release files such as README, Chinese README, and LICENSE. For multi-skill collections, it can also generate `skills.sh.json`.
 - Validates the packaged skill before publishing.
 - Publishes through GitHub when a safe publishing surface is available.
 - Produces install instructions, GitHub metadata recommendations, and launch copy.
@@ -41,9 +41,9 @@ After installing, ask Codex to use `$skill-open-sourcer` with a local `SKILL.md`
 
 The skill treats open-sourcing as a gated release workflow, not a file copy.
 
-It first checks the local environment, then scans the source skill for release blockers such as secrets, personal absolute paths, cache files, large generated artifacts, and unclear assets. When the package is safe, it builds a small release repository with the agent-facing skill under `skills/` and human-facing docs at the repository root.
+It first checks the local environment, then scans the source skill for release blockers such as secrets, personal absolute paths, cache files, large generated artifacts, and unclear assets. When the package is safe, it builds a small release repository with the agent-facing skill and human-facing docs in the right place for the release shape.
 
-The detailed agent workflow lives in [`skills/skill-open-sourcer/SKILL.md`](skills/skill-open-sourcer/SKILL.md). Humans usually do not need to run the helper scripts directly.
+The detailed agent workflow lives in [`SKILL.md`](SKILL.md). Humans usually do not need to run the helper scripts directly.
 
 ## Example Requests
 
@@ -60,15 +60,12 @@ Use $skill-open-sourcer to audit this skill before I share it publicly.
 ├── README.md
 ├── README.zh-CN.md
 ├── LICENSE
-├── skills.sh.json
-└── skills/
-    └── skill-open-sourcer/
-        ├── SKILL.md
-        ├── agents/openai.yaml
-        ├── references/release-package.md
-        └── scripts/
-            ├── check_release_env.py
-            └── scan_skill_release.py
+├── SKILL.md
+├── agents/openai.yaml
+├── references/release-package.md
+└── scripts/
+    ├── check_release_env.py
+    └── scan_skill_release.py
 ```
 
 ## License

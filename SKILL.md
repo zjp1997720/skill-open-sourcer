@@ -30,7 +30,7 @@ python3 "$SKILL_OPEN_SOURCER_DIR/scripts/scan_skill_release.py" /path/to/skill-o
 ```
 
 5. If the environment and safety scans are clear, create a fresh release repository outside the source skill directory.
-6. Copy the skill into `skills/<skill-name>/`, preserving only files needed for the skill to work.
+6. For a single-skill repo, copy `SKILL.md`, `agents/`, `references/`, `scripts/`, and `assets/` directly to the repo root. Use `skills/<skill-name>/` plus `skills.sh.json` only for multi-skill collection repos.
 7. Add the public release files described in `references/release-package.md`, including the README quality gate and GitHub metadata recommendations.
 8. Validate the packaged skill and `npx skills` listing before publishing.
 9. Publish to GitHub when low-risk checks pass, then produce launch copy.
@@ -69,6 +69,7 @@ Low-risk auto publish is allowed only when the scanner and manual review find no
 ## Packaging Rules
 
 - Keep the original skill behavior intact. Refactor only enough to remove private assumptions and make public installation reliable.
+- Default to a flat root layout for one public skill. Use a nested `skills/<skill-name>/` layout only when one repository publishes multiple skills.
 - Prefer a lean `SKILL.md`; move detailed public guidance into `references/` only when an agent will genuinely need it.
 - Do not add a README inside the skill folder. Put human-facing documentation at the release repo root.
 - Preserve `agents/openai.yaml` when present. If absent, create it with `display_name`, `short_description`, and a `default_prompt` that explicitly mentions `$<skill-name>`.
@@ -84,7 +85,7 @@ Low-risk auto publish is allowed only when the scanner and manual review find no
 4. Validate with the system skill validator when available:
 
 ```bash
-python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_validate.py" skills/<skill-name>
+python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_validate.py" .
 ```
 
 5. Create or update the GitHub repository using the available GitHub surface (`gh`, GitHub MCP/app, or existing remote). Avoid force push.

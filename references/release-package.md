@@ -2,7 +2,25 @@
 
 Use this reference when turning a local skill into a public repository.
 
-## Canonical Repo Layout
+## Repo Layout
+
+Use a flat root layout for a repository that publishes exactly one skill:
+
+```text
+.
+├── README.md
+├── README.zh-CN.md
+├── LICENSE
+├── SKILL.md
+├── agents/openai.yaml
+├── references/
+├── scripts/
+└── assets/
+```
+
+Only include `agents/`, `references/`, `scripts/`, or `assets/` when the source skill actually needs them.
+
+Use a nested collection layout only when one repository publishes multiple skills:
 
 ```text
 .
@@ -23,7 +41,9 @@ Only include `scripts/`, `references/`, or `assets/` when the source skill actua
 
 ## skills.sh.json
 
-Use a small manifest so `npx skills add <owner>/<repo> --list` can discover the skill.
+For a single flat skill repo, omit `skills.sh.json` and let `npx skills` discover the root `SKILL.md`.
+
+For a multi-skill collection repo, use a small manifest so `npx skills add <owner>/<repo> --list` can discover the skills.
 
 ```json
 {
@@ -61,7 +81,7 @@ Root README files should explain:
 - What the agent-facing skill does at a high level.
 - Safety or requirements that matter.
 
-Avoid dumping long script manuals into README. If a helper script exists, say that the agent-facing workflow lives in `skills/<skill-name>/SKILL.md`.
+Avoid dumping long script manuals into README. If a helper script exists, say that the agent-facing workflow lives in `SKILL.md` for a flat single-skill repo, or `skills/<skill-name>/SKILL.md` for a collection repo.
 
 Before writing, extract these fields from the skill:
 
@@ -143,6 +163,8 @@ The public skill folder must remain agent-first:
 
 Do not add `README.md`, install guides, changelogs, or marketing docs inside `skills/<skill-name>/`.
 
+For a flat single-skill repo, this means the root README is human-facing and the root `SKILL.md` is agent-facing. For a collection repo, each nested skill folder should stay agent-facing only.
+
 ## Sanitization Checklist
 
 Before publishing:
@@ -174,9 +196,11 @@ Interpretation:
 Run these checks from the release repo root:
 
 ```bash
-python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_validate.py" "skills/<skill-name>"
+python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_validate.py" "."
 npx skills add <owner>/<repo> --list
 ```
+
+For a multi-skill collection repo, validate each skill folder under `skills/`.
 
 If publishing before the remote exists, run the validator first, then run the `npx skills` check after the first push.
 

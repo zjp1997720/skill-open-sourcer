@@ -32,8 +32,8 @@ npx skills add zjp1997720/skill-open-sourcer --list
 
 - 审计本地 skill 是否适合公开发布。
 - 检查明显风险：密钥、个人绝对路径、缓存文件、大型生成物、授权不明资产。
-- 打包成 `npx skills` 可识别的 `skills/<skill-name>/` 结构。
-- 生成根目录 README、中文 README、LICENSE 和 `skills.sh.json`。
+- 打包成 `npx skills` 可识别的结构。
+- 生成根目录 README、中文 README 和 LICENSE。
 - 发布前校验 skill 结构和 `npx skills` 发现能力。
 - 在安全通道可用时发布到 GitHub。
 - 输出安装命令、GitHub 元信息建议和发布文案。
@@ -42,9 +42,9 @@ npx skills add zjp1997720/skill-open-sourcer --list
 
 这个 skill 把“开源一个本地 skill”当成发布流程处理，而不是简单复制文件。
 
-它会先检查环境，再扫描源 skill 的公开风险。风险通过后，才创建一个干净的发布仓库：agent 真正要读的内容放在 `skills/` 下，人要看的说明放在仓库根目录。
+它会先检查环境，再扫描源 skill 的公开风险。风险通过后，才创建一个干净的发布仓库，并按发布形态把 agent 要读的内容和人要看的说明放在合适位置。
 
-具体执行流程写在 [`skills/skill-open-sourcer/SKILL.md`](skills/skill-open-sourcer/SKILL.md)。人通常不需要手动跑里面的辅助脚本。
+具体执行流程写在 [`SKILL.md`](SKILL.md)。人通常不需要手动跑里面的辅助脚本。
 
 ## 示例请求
 
@@ -61,15 +61,12 @@ Use $skill-open-sourcer to audit this skill before I share it publicly.
 ├── README.md
 ├── README.zh-CN.md
 ├── LICENSE
-├── skills.sh.json
-└── skills/
-    └── skill-open-sourcer/
-        ├── SKILL.md
-        ├── agents/openai.yaml
-        ├── references/release-package.md
-        └── scripts/
-            ├── check_release_env.py
-            └── scan_skill_release.py
+├── SKILL.md
+├── agents/openai.yaml
+├── references/release-package.md
+└── scripts/
+    ├── check_release_env.py
+    └── scan_skill_release.py
 ```
 
 ## 许可证

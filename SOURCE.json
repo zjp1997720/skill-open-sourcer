@@ -1,15 +1,15 @@
 {
   "canonical_repository": "zjp1997720/zhijian-skills",
-  "export_digest": "8dfd358fd96fcc9b1116b9378c442f598d8b9658acea3c7b2b62908d79786ec8",
+  "export_digest": "598b93fddec8dd8b2d5693e256b95ee710c9c1346d1d2e7022d654fd3c1d4d4f",
   "files": {
     ".github/workflows/redirect-contributions.yml": "07df186b56b8ad5f799ea585601d1fbec345f5cb7b3626b0755a99c2fb802502",
-    "CHANGELOG.md": "3d06bbbc74957c0b824fcee96944c9dbf871ab51424db1775d43e3f559e8a649",
+    "CHANGELOG.md": "a0b8083b38d7510919e3b2f17e037280e7e21faac04c671df448c19fee1c86a1",
     "CONTRIBUTING.md": "1419405f16cb6eba0f34af1642087cf75dd8b09903e25d3a414ca8634fc9308e",
     "LICENSE": "4c132f6df8bf3720921492fb26412abc98bf51eec6acbe89dbf95c8b09b8d340",
-    "README.md": "6d5699457131482df6a94bbc2bd440f7a947523cd71df1451a5a44a542beb298",
-    "README.zh-CN.md": "a67328ac3ffcab902cbc20b9cf74039b50cdd4dd6708849ff88b6107f567ffaf",
+    "README.md": "6d1935adadcbd3ca127a61bea55dec7264197344eb75842231c8d5c16bd1477c",
+    "README.zh-CN.md": "24ea691b1be787a072316bf80e57ed85762dfc3894b1ecd8802c19a9c346a699",
     "skills/skill-open-sourcer/LICENSE": "f15ec760a2784506dce9074e80df6cd4b1d1adeec715bc926c64dbc41cdd85aa",
-    "skills/skill-open-sourcer/SKILL.md": "7eca26c1a5d9f62936b988c2159109d539e17638156a8d62e1b65345a2458955",
+    "skills/skill-open-sourcer/SKILL.md": "38229dff5989824d0643967cd84904fd6bd1f0166fb6f593029983061f2e59d4",
     "skills/skill-open-sourcer/agents/openai.yaml": "f2161274cfc9a3142db36005459e4dbc83a522f18300fec9c18761462db19577",
     "skills/skill-open-sourcer/references/mirror-contract.md": "c9f74d26788064e97e3a80fef27129e09cf4d239fc31aa6eab007680677d423c",
     "skills/skill-open-sourcer/references/portfolio-mode.md": "9154c22e1b6dfab0d360f0a3d27ba13038d53301d050ea760d8772e762d5c966",
@@ -23,16 +23,16 @@
     "skills/skill-open-sourcer/scripts/audit_release_readme.py": "72d6ba5fb15e528eabc42d6a78c00e34224f47c067bfed93de940d6e9ef3b18c",
     "skills/skill-open-sourcer/scripts/check_release_env.py": "d320385b62470f1c339a5b4964d555c4fbe693296f453f62cd1ca5e675725538",
     "skills/skill-open-sourcer/scripts/export_mirror.py": "94bf3201ccb75070ad676d91ea374a0183b2a3bd192676f1df5f7b8750f3ada3",
-    "skills/skill-open-sourcer/scripts/manage_local_links.py": "e73c83a915f85d3fd7c8939f182e186a27438bd1317448c320ce90c239ce9232",
+    "skills/skill-open-sourcer/scripts/manage_local_links.py": "c1eea5b931c7e6aa4fb7ef6360ad882d37efb1c9692090ba15c110aabefd025b",
     "skills/skill-open-sourcer/scripts/portfolio.py": "d1bf220d0ed71fcfb70eceb804343f88650c8b64fca2b64ffe87364f757bae1a",
-    "skills/skill-open-sourcer/scripts/release_portfolio.py": "d38879388ee2e1fb4d37c46e4d08a80bffdeb05db9b27a7c69ee7f8cefeb539e",
-    "skills/skill-open-sourcer/scripts/scan_skill_release.py": "f1b4ce043e8f4774704092126a5b1e185e2ceb65d4a2338e5ea8938505b739ff",
+    "skills/skill-open-sourcer/scripts/release_portfolio.py": "0fd689bc56ebac9b244dfafd718eced75ac9a8dad33be33f4105fe32a67f05fb",
+    "skills/skill-open-sourcer/scripts/scan_skill_release.py": "0dca2841bdcdedc0874b92a780cc7baafebb69475e3767e2e623167de2c3b5a2",
     "skills/skill-open-sourcer/tests/test_audit_release_readme.py": "3b3d29856c51728a6b3942e819826460ce541d7720b0d1c39bf370e5a9a23209"
   },
   "generated": true,
-  "payload_digest": "35d126759cc016c9163e17057c665f09cbf3842d34d2a98f2d3cc5e0bfd53f3b",
+  "payload_digest": "4150d3f0b6f1642535c62490190931dd8dd5e4178497a0d80bace30e2f7454e4",
   "schema_version": "1.0.0",
   "skill": "skill-open-sourcer",
-  "source_commit": "1e422efeac0be6f3eb229da8d5ff387ad56fe4aa",
-  "version": "1.1.0"
+  "source_commit": "d2a24edbf61c3cc4b04f68fc48c402ffecdb7af1",
+  "version": "1.1.1"
 }

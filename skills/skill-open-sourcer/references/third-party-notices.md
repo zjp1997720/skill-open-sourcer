@@ -1,6 +1,19 @@
+# Third-Party Notices
+
+## beautify-github-readme
+
+Portions of the README design method in this skill are adapted from:
+
+- Project: `oil-oil/beautify-github-readme`
+- Source: https://github.com/oil-oil/beautify-github-readme
+- Source revision reviewed: `9d46a3ea9a0581999b10f51e8b3697ca9a49bc4e`
+- Copyright: Copyright (c) 2026 oil-oil
+- License: MIT
+
+```text
 MIT License
 
-Copyright (c) 2026 zjp1997720
+Copyright (c) 2026 oil-oil
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +32,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+```

@@ -4,30 +4,25 @@ Use this reference when turning a local skill into a public repository.
 
 ## Repo Layout
 
-Use a flat root layout for a repository that publishes exactly one skill:
+Use a flat root layout only for a self-contained single-file Skill:
 
 ```text
 .
 ├── README.md
 ├── README.zh-CN.md
 ├── LICENSE
-├── SKILL.md
-├── agents/openai.yaml
-├── references/
-├── scripts/
-└── assets/
+└── SKILL.md
 ```
 
-Only include `agents/`, `references/`, `scripts/`, or `assets/` when the source skill actually needs them.
+Current remote `npx skills` installation intentionally copies only the root `SKILL.md`. Do not use this layout when the Skill needs support files.
 
-Use a nested collection layout only when one repository publishes multiple skills:
+Use a nested install-payload layout whenever one or more Skills need `agents/`, `references/`, `scripts/`, or agent-facing `assets/`. This includes single-skill repositories:
 
 ```text
 .
 ├── README.md
 ├── README.zh-CN.md
 ├── LICENSE
-├── skills.sh.json
 └── skills/
     └── <skill-name>/
         ├── SKILL.md
@@ -37,11 +32,11 @@ Use a nested collection layout only when one repository publishes multiple skill
         └── assets/
 ```
 
-Only include `scripts/`, `references/`, or `assets/` when the source skill actually needs them.
+Only include support directories the source Skill actually needs. Add `skills.sh.json` when a multi-skill collection benefits from curated grouping metadata; nested discovery does not require a manifest.
 
 ## skills.sh.json
 
-For a single flat skill repo, omit `skills.sh.json` and let `npx skills` discover the root `SKILL.md`.
+For a self-contained flat Skill, omit `skills.sh.json` and let `npx skills` discover the root `SKILL.md`.
 
 For a multi-skill collection repo, use a small manifest so `npx skills add <owner>/<repo> --list` can discover the skills.
 
@@ -70,7 +65,7 @@ Root README files are trust entrances and install entrances. They should answer 
 
 README is not the full manual. Put detailed agent procedure in `skills/<skill-name>/SKILL.md`, and put long references in the skill's `references/` folder.
 
-For skill release repos, use a `clean-doc` posture by default: clear prose, short install path, little or no visual decoration. Add images only when they clarify a real output or make a visual skill understandable.
+Read `readme-design.md` before writing. It defines the story sequence, presentation tiers, project-native visual direction, GitHub-safe SVG rules, and preview checks. Every release gets the content architecture; only evidence-rich releases get visual assets.
 
 Root README files should explain:
 
@@ -81,7 +76,7 @@ Root README files should explain:
 - What the agent-facing skill does at a high level.
 - Safety or requirements that matter.
 
-Avoid dumping long script manuals into README. If a helper script exists, say that the agent-facing workflow lives in `SKILL.md` for a flat single-skill repo, or `skills/<skill-name>/SKILL.md` for a collection repo.
+Avoid dumping long script manuals into README. If the Skill has support files, say that the agent-facing workflow lives in `skills/<skill-name>/SKILL.md`. Reserve a root `SKILL.md` for genuinely self-contained releases.
 
 Before writing, extract these fields from the skill:
 
@@ -94,13 +89,14 @@ Before writing, extract these fields from the skill:
 | `promise` | What result the user gets |
 | `proof` | Real commands, outputs, screenshots, or examples |
 | `start` | Shortest safe install/use path |
+| `native_material` | The real interface, artifact, transformation, diagram, or command output that can carry the visual story |
 
 Required README sections:
 
 ```text
 # <Skill Display Name>
 
-[中文文档](README.zh-CN.md)
+`README.zh-CN.md`
 
 One short value proposition.
 
@@ -143,13 +139,18 @@ Quality gate:
 - Do not include internal design scores, private workflow notes, generated file inventories, or implementation trivia.
 - Do not add decorative ASCII art, emoji heading systems, social-link tables, or marketing claims that the skill does not prove.
 - Move detailed configuration, troubleshooting, and protocol notes to `docs/` or the skill's `references/`.
+- Put real proof before abstract claims. One complete example is stronger than a wall of disconnected features.
+- Make every visual module perform a communication job: identity, proof, comparison, sequence, or architecture.
+- Keep the README meaningful when images fail; headings, alt text, commands, and links must still carry the release.
 
 For visual assets:
 
-- Default to no image for small infrastructure skills.
-- Use at most one banner or one output screenshot when it makes the repo easier to understand.
-- Use stable paths such as `assets/banner.webp` only when the asset is actually needed.
-- Do not create dense flow images, tiny text diagrams, or decorative covers for a CLI/agent utility.
+- Use the `clean-doc` tier for small infrastructure skills or releases without honest visual proof.
+- Use the `proof-led` tier for skills with a real UI, document, chart, media output, before/after result, or architecture that helps adoption.
+- Default to one project-native hero or one proof board. Add both only when the hero stays concise and the proof needs more room to remain legible.
+- Store release visuals under stable paths such as `assets/readme/hero.svg` and `assets/readme/showcase.webp`.
+- Do not create dense flow images, tiny text diagrams, generic technical decoration, or covers that could belong to an unrelated repository.
+- Do not insert attribution, backlinks, or a “made with” badge unless the repository owner explicitly requests it.
 
 ## Skill Folder Contract
 
@@ -163,7 +164,7 @@ The public skill folder must remain agent-first:
 
 Do not add `README.md`, install guides, changelogs, or marketing docs inside `skills/<skill-name>/`.
 
-For a flat single-skill repo, this means the root README is human-facing and the root `SKILL.md` is agent-facing. For a collection repo, each nested skill folder should stay agent-facing only.
+For a self-contained flat repo, the root README is human-facing and the root `SKILL.md` is agent-facing. For a nested install payload, each `skills/<skill-name>/` folder stays agent-facing only.
 
 ## Sanitization Checklist
 
@@ -196,13 +197,27 @@ Interpretation:
 Run these checks from the release repo root:
 
 ```bash
+python3 "${CODEX_HOME:-$HOME/.codex}/skills/skill-open-sourcer/scripts/audit_release_readme.py" . --strict
 python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-creator/scripts/quick_validate.py" "."
 npx skills add <owner>/<repo> --list
 ```
 
-For a multi-skill collection repo, validate each skill folder under `skills/`.
+For any nested repository, validate each skill folder under `skills/`.
+
+Then perform a real installation in an isolated home directory and inspect the installed tree. For a Codex-targeted Skill:
+
+```bash
+TEMP_HOME="$(mktemp -d)"
+HOME="$TEMP_HOME" npx skills add <owner>/<repo> \
+  -g -a codex --skill <skill-name> --copy -y
+find "$TEMP_HOME/.agents/skills/<skill-name>" -maxdepth 3 -type f | sort
+```
+
+Every file referenced by `SKILL.md` must be present. A successful `--list` or an installed `SKILL.md` alone does not prove that the package is complete.
 
 If publishing before the remote exists, run the validator first, then run the `npx skills` check after the first push.
+
+The README audit checks deterministic structure, local links and images, alt text, and basic SVG compatibility. Render and inspect every visual separately; the script cannot judge composition, clipping, proof legibility, or visual originality.
 
 Also inspect `git status --short` before committing. Do not commit caches, logs, secrets, large generated files, or unrelated edits.
 

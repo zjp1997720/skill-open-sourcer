@@ -1,6 +1,6 @@
 {
   "canonical_repository": "zjp1997720/zhijian-skills",
-  "export_digest": "0cf7e297974fe8c1e35ead4d2c79b7c31dca7d6302278146d2db20e49b710be3",
+  "export_digest": "b6d4f5badf3fa064951bcc835d7cd7edf17803b3727c950269223402ff91003f",
   "files": {
     ".github/workflows/redirect-contributions.yml": "07df186b56b8ad5f799ea585601d1fbec345f5cb7b3626b0755a99c2fb802502",
     "CHANGELOG.md": "c23bff91acb5eb8194b152174c764eae9d5791b57a798881626c4c4ef910842a",
@@ -22,16 +22,16 @@
     "skills/skill-open-sourcer/references/version-contract.md": "16bdb6ce92caf08780bc56e3830f9dfb14b99c6d1fa290c832725dac80bee0fd",
     "skills/skill-open-sourcer/scripts/audit_release_readme.py": "72d6ba5fb15e528eabc42d6a78c00e34224f47c067bfed93de940d6e9ef3b18c",
     "skills/skill-open-sourcer/scripts/check_release_env.py": "d320385b62470f1c339a5b4964d555c4fbe693296f453f62cd1ca5e675725538",
-    "skills/skill-open-sourcer/scripts/export_mirror.py": "4f2dc2d996fe441df7e6387958e5c1b909034ab54b91838667c890f6acda4ac8",
+    "skills/skill-open-sourcer/scripts/export_mirror.py": "498962c7e5319c9cbc07bcef89addc564d31cb6467c6560690b2eac2864b3adc",
     "skills/skill-open-sourcer/scripts/portfolio.py": "d1bf220d0ed71fcfb70eceb804343f88650c8b64fca2b64ffe87364f757bae1a",
     "skills/skill-open-sourcer/scripts/release_portfolio.py": "02a8b4d1e08edbcd9df5b35dcb7fc211dc93d70056d7571025455a6b7e427869",
     "skills/skill-open-sourcer/scripts/scan_skill_release.py": "f1b4ce043e8f4774704092126a5b1e185e2ceb65d4a2338e5ea8938505b739ff",
     "skills/skill-open-sourcer/tests/test_audit_release_readme.py": "3b3d29856c51728a6b3942e819826460ce541d7720b0d1c39bf370e5a9a23209"
   },
   "generated": true,
-  "payload_digest": "46c907687f24b453f2ff1801de21ed4b5ce1d311f03f2a599f278ae7aadfb7e8",
+  "payload_digest": "f4a32f39407381c70cf14a90ebea044ee58fa02d7ebed5fd8705bebc7f9ac4ec",
   "schema_version": "1.0.0",
   "skill": "skill-open-sourcer",
-  "source_commit": "33bbb003cb967ae75f9ef372438d2e6744ca278f",
+  "source_commit": "26cba9e100b37a2efe0fa161bd394db46cee5328",
   "version": "1.0.0"
 }
